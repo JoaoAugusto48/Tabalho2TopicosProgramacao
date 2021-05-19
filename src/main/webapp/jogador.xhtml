@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Jogador</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h:form id="form">
+		Id: <h:inputText value="#{jogadorcontroller.jogador.id}"></h:inputText>
+		<br></br><br></br>
+		Nome: <h:inputText value="#{jogadorcontroller.jogador.nome}"></h:inputText>
+		<br></br><br></br>
+		Idade: <h:inputText value="#{jogadorcontroller.jogador.idade}"></h:inputText>
+		<br></br><br></br>
+		Pais: <h:inputText value="#{jogadorcontroller.jogador.pais}"></h:inputText>
+		
+		<h:selectOneMenu value="#{jogadorcontroller.paisSelecionado}">
+			<f:selectItems 
+				value="#{jogadorcontroller.paises}" 
+				var="pais" 
+				itemValue="#{pais.id}" 
+				itemLabel="#{pais.nome}"> 
+			</f:selectItems>
+		</h:selectOneMenu>
+		<br></br><br></br>
+		
+		<h:commandButton value="Enviar dados" action="#{jogadorcontroller.adicionaJogador}">
+			<f:ajax execute="@form" render="@form"></f:ajax>
+		</h:commandButton>
+	
+		<h:dataTable border="1" value="#{jogadorcontroller.jogador}" var="jogador" id="tabela">
+			<h:column id="column1">
+				<f:facet name="header">
+					<h:outputText value="Id"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{jogador.id}"></h:outputText>
+			</h:column>
+			<h:column id="column2">
+				<f:facet name="header">
+					<h:outputText value="Nome"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{jogador.nome}"></h:outputText>
+			</h:column>
+			<h:column id="column3">
+				<f:facet name="header">
+					<h:outputText value="Idade"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{jogador.idade}"></h:outputText>
+			</h:column>
+			<h:column id="column4">
+				<f:facet name="header">
+					<h:outputText value="Idade"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{jogador.idade}"></h:outputText>
+			</h:column>
+			<h:column id="column5">
+				<f:facet name="header">
+					<h:outputText value="Pais"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{jogador.pais.nome}"></h:outputText>
+			</h:column>
+			<h:column id="column6">
+				<f:facet name="header">
+					<h:outputText value="Excluir"></h:outputText>
+				</f:facet>
+				<h:commandButton action="#{jogadorcontroller.excluir(jogador)}">
+					<f:ajax execute="tabela" render="tabela"></f:ajax>
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

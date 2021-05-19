@@ -35,10 +35,9 @@ public class JogadorDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Jogador> getJogadores(String nome) throws SQLException {
-		String sql = "select * from jogador where nome ilike :nome order by nome";
+	public List<Jogador> getJogadores() throws SQLException {
+		String sql = "select * from jogador;";
 		Query consulta = em.createNativeQuery(sql, Jogador.class);
-		consulta.setParameter("nome", "%" + nome + "%");
 		List<Jogador> jogadores = consulta.getResultList();
 		return jogadores;
 	}

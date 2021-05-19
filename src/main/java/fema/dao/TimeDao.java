@@ -35,10 +35,9 @@ public class TimeDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Time> getTimes(String nome) throws SQLException {
-		String sql = "select * from time where nome ilike :nome order by nome";
+	public List<Time> getTimes() throws SQLException {
+		String sql = "select * from time";
 		Query consulta = em.createNativeQuery(sql, Time.class);
-		consulta.setParameter("nome", "%" + nome + "%");
 		List<Time> times = consulta.getResultList();
 		return times;
 	}

@@ -35,10 +35,9 @@ public class PaisDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Pais> getPaises(String nome) throws SQLException {
-		String sql = "select * from pais where nome ilike :nome order by nome";
+	public List<Pais> getPaises() throws SQLException {
+		String sql = "select * from pais ";
 		Query consulta = em.createNativeQuery(sql, Pais.class);
-		consulta.setParameter("nome", "%" + nome + "%");
 		List<Pais> paises = consulta.getResultList();
 		return paises;
 	}
